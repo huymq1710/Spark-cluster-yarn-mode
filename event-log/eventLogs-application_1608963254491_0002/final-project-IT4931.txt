@@ -1,0 +1,1576 @@
+{
+  "paragraphs": [
+    {
+      "text": "sc.version",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:32:58.294",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres1\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 2.4.7\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608954493535_-485218859",
+      "id": "paragraph_1608954493535_-485218859",
+      "dateCreated": "2020-12-26 10:48:13.535",
+      "dateStarted": "2020-12-26 13:32:59.461",
+      "dateFinished": "2020-12-26 13:37:41.254",
+      "status": "FINISHED"
+    },
+    {
+      "title": "i. Load and clean dataset",
+      "text": "In this notebook, will load and clean log data user activity, handling of invalid or missing values: 01/2018 -\u003e 03/2018. Total: 7,1GB",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:48:32.443",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608964937163_-1959792482",
+      "id": "paragraph_1608964937163_-1959792482",
+      "dateCreated": "2020-12-26 13:42:17.163",
+      "status": "READY"
+    },
+    {
+      "text": "val event_data \u003d \"hdfs:///huymac/log_file/*.json\"\nval df \u003d sqlContext.read.json(event_data)\ndf.head(5)",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:38:44.035",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mevent_data\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs:///huymac/log_file/*.json\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [artist: string, auth: string ... 16 more fields]\n\u001b[1m\u001b[34mres2\u001b[0m: \u001b[1m\u001b[32mArray[org.apache.spark.sql.Row]\u001b[0m \u003d Array([Martin Orford,Logged In,Joseph,M,20,Morales,597.55057,free,Corpus Christi, TX,PUT,NextSong,1532063507000,292,Grand Designs,200,1038352011000,\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36\",293], [John Brown\u0027s Body,Logged In,Sawyer,M,74,Larson,380.21179,free,Houston-The Woodlands-Sugar Land, TX,PUT,NextSong,1538069638000,97,Bulls,200,1038352025000,\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 S..."
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608954504957_1357389483",
+      "id": "paragraph_1608954504957_1357389483",
+      "dateCreated": "2020-12-26 10:48:24.957",
+      "dateStarted": "2020-12-26 13:38:44.045",
+      "dateFinished": "2020-12-26 13:42:35.670",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df.printSchema()\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:46:30.645",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- artist: string (nullable \u003d true)\n |-- auth: string (nullable \u003d true)\n |-- firstName: string (nullable \u003d true)\n |-- gender: string (nullable \u003d true)\n |-- itemInSession: long (nullable \u003d true)\n |-- lastName: string (nullable \u003d true)\n |-- length: double (nullable \u003d true)\n |-- level: string (nullable \u003d true)\n |-- location: string (nullable \u003d true)\n |-- method: string (nullable \u003d true)\n |-- page: string (nullable \u003d true)\n |-- registration: long (nullable \u003d true)\n |-- sessionId: long (nullable \u003d true)\n |-- song: string (nullable \u003d true)\n |-- status: long (nullable \u003d true)\n |-- ts: long (nullable \u003d true)\n |-- userAgent: string (nullable \u003d true)\n |-- userId: string (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608954949196_1084678990",
+      "id": "paragraph_1608954949196_1084678990",
+      "dateCreated": "2020-12-26 10:55:49.196",
+      "dateStarted": "2020-12-26 13:46:30.658",
+      "dateFinished": "2020-12-26 13:46:31.403",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Statistics of whole dataset",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:55:39.445",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608965220145_-430687454",
+      "id": "paragraph_1608965220145_-430687454",
+      "dateCreated": "2020-12-26 13:47:00.145",
+      "status": "READY"
+    },
+    {
+      "text": "df.describe().show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:46:34.765",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+-----------------+----------+---------+--------+------------------+--------+-----------------+--------+----------------+--------+--------+--------------------+------------------+--------------------+------------------+--------------------+--------------------+-----------------+\n|summary|           artist|      auth|firstName|  gender|     itemInSession|lastName|           length|   level|        location|  method|    page|        registration|         sessionId|                song|            status|                  ts|           userAgent|           userId|\n+-------+-----------------+----------+---------+--------+------------------+--------+-----------------+--------+----------------+--------+--------+--------------------+------------------+--------------------+------------------+--------------------+--------------------+-----------------+\n|  count|         12986310|  16311150| 15840150|15840150|          16311150|15840150|         12986310|16311150|        15840150|16311150|16311150|            15840150|          16311150|            12986310|          16311150|            16311150|            15840150|         16311150|\n|   mean|527.5289537712898|      null|     null|    null|107.30629109535502|    null|248.6645927800807|    null|            null|    null|    null|1.535523414863164...|2040.8143533717732|            Infinity|210.01829116892432|2.490964541209846E12|                null|60268.42669103512|\n| stddev|964.9703482342488|      null|     null|    null|116.72340472901226|    null|98.41255966675672|    null|            null|    null|    null| 3.078722674743454E9|1434.3376560041659|                 NaN|31.471891044198603|8.655454402201329E11|                null|109898.7226408392|\n|    min|              !!!| Cancelled|  Aaliyah|       F|                 0|  Abbott|          0.78322|    free|       Akron, OH|     GET|   About|       1509854193000|                 1|\u001cÃÂg ÃÂtti Gr...|               200|       1038352011000|\"Mozilla/5.0 (Mac...|                 |\n|    max|ÃÂlafur Arnalds|Logged Out|   Zyonna|       M|              1005|  Wright|       3024.66567|    paid|York-Hanover, PA|     PUT| Upgrade|       1543073874000|              4808|ÃÂ¾etta Gerist Ã...|               404|       3943622466000|Mozilla/5.0 (comp...|               99|\n+-------+-----------------+----------+---------+--------+------------------+--------+-----------------+--------+----------------+--------+--------+--------------------+------------------+--------------------+------------------+--------------------+--------------------+-----------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608963985158_633827956",
+      "id": "paragraph_1608963985158_633827956",
+      "dateCreated": "2020-12-26 13:26:25.158",
+      "dateStarted": "2020-12-26 13:46:34.773",
+      "dateFinished": "2020-12-26 13:52:25.085",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Statistics of the #artist# column",
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:43:35.276",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608965743311_1204487161",
+      "id": "paragraph_1608965743311_1204487161",
+      "dateCreated": "2020-12-26 13:55:43.311",
+      "status": "READY"
+    },
+    {
+      "text": "df.describe(\"artist\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:52:31.428",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+-----------------+\n|summary|           artist|\n+-------+-----------------+\n|  count|         12986310|\n|   mean|527.5289537712898|\n| stddev|964.9703482342493|\n|    min|              !!!|\n|    max|ÃÂlafur Arnalds|\n+-------+-----------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608964111080_1448846047",
+      "id": "paragraph_1608964111080_1448846047",
+      "dateCreated": "2020-12-26 13:28:31.081",
+      "dateStarted": "2020-12-26 13:52:31.438",
+      "dateFinished": "2020-12-26 13:53:12.673",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Statistics of the sessionId column",
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:43:31.176",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "lineNumbers": false,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608965651263_-591887522",
+      "id": "paragraph_1608965651263_-591887522",
+      "dateCreated": "2020-12-26 13:54:11.263",
+      "status": "READY"
+    },
+    {
+      "text": "df.describe(\"sessionId\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:56:49.168",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+------------------+\n|summary|         sessionId|\n+-------+------------------+\n|  count|          16311150|\n|   mean|2040.8143533717732|\n| stddev|1434.3376560041656|\n|    min|                 1|\n|    max|              4808|\n+-------+------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608964243993_279994255",
+      "id": "paragraph_1608964243993_279994255",
+      "dateCreated": "2020-12-26 13:30:43.993",
+      "dateStarted": "2020-12-26 13:56:49.174",
+      "dateFinished": "2020-12-26 13:57:16.032",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Statistics of the userId column",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 15:13:59.792",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608968492893_928796201",
+      "id": "paragraph_1608968492893_928796201",
+      "dateCreated": "2020-12-26 14:41:32.893",
+      "status": "READY"
+    },
+    {
+      "text": "df.describe(\"userId\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:57:25.672",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+------------------+\n|summary|            userId|\n+-------+------------------+\n|  count|          16311150|\n|   mean| 60268.42669103512|\n| stddev|109898.72264083923|\n|    min|                  |\n|    max|                99|\n+-------+------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608964265114_-1893598302",
+      "id": "paragraph_1608964265114_-1893598302",
+      "dateCreated": "2020-12-26 13:31:05.114",
+      "dateStarted": "2020-12-26 13:57:25.679",
+      "dateFinished": "2020-12-26 13:58:01.391",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Total rows: 16,311,150",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:43:22.489",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608968526300_1575988210",
+      "id": "paragraph_1608968526300_1575988210",
+      "dateCreated": "2020-12-26 14:42:06.300",
+      "status": "READY"
+    },
+    {
+      "text": "df.count()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:58:07.393",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres8\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 16311150\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608965845679_1214847307",
+      "id": "paragraph_1608965845679_1214847307",
+      "dateCreated": "2020-12-26 13:57:25.679",
+      "dateStarted": "2020-12-26 13:58:07.400",
+      "dateFinished": "2020-12-26 13:58:34.668",
+      "status": "FINISHED"
+    },
+    {
+      "title": "All the page events in the dataset:",
+      "text": "\n- About\n- Add Friend\n- Add to Playlist\n- Cancel\n- ### Cancellation Confirmation ###\n- Downgrade\n- Error\n- Help\n- Home\n- Login\n- Logout\n- NextSong\n- Register\n- Roll Advert\n- Save Settings\n- Settings\n- Submit Downgrade\n- Submit Registration\n- Submit Upgrade\n- Thumbs Down\n- Thumbs Up\n- Upgrade",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:44:22.211",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608968311517_994186218",
+      "id": "paragraph_1608968311517_994186218",
+      "dateCreated": "2020-12-26 14:38:31.517",
+      "status": "READY"
+    },
+    {
+      "text": "df.select(\"page\").dropDuplicates().sort(\"page\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 13:59:59.193",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|                page|\n+--------------------+\n|               About|\n|          Add Friend|\n|     Add to Playlist|\n|              Cancel|\n|Cancellation Conf...|\n|           Downgrade|\n|               Error|\n|                Help|\n|                Home|\n|               Login|\n|              Logout|\n|            NextSong|\n|            Register|\n|         Roll Advert|\n|       Save Settings|\n|            Settings|\n|    Submit Downgrade|\n| Submit Registration|\n|      Submit Upgrade|\n|         Thumbs Down|\n+--------------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608965887399_-467347805",
+      "id": "paragraph_1608965887399_-467347805",
+      "dateCreated": "2020-12-26 13:58:07.399",
+      "dateStarted": "2020-12-26 13:59:59.206",
+      "dateFinished": "2020-12-26 14:00:34.703",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Missing values",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:45:08.815",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608968682056_1371434640",
+      "id": "paragraph_1608968682056_1371434640",
+      "dateCreated": "2020-12-26 14:44:42.057",
+      "status": "READY"
+    },
+    {
+      "text": "import org.apache.spark.sql.functions._\ndf.columns\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:00:46.544",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions._\n\u001b[1m\u001b[34mres11\u001b[0m: \u001b[1m\u001b[32mArray[String]\u001b[0m \u003d Array(artist, auth, firstName, gender, itemInSession, lastName, length, level, location, method, page, registration, sessionId, song, status, ts, userAgent, userId)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608965918118_-221409340",
+      "id": "paragraph_1608965918118_-221409340",
+      "dateCreated": "2020-12-26 13:58:38.118",
+      "dateStarted": "2020-12-26 14:00:46.552",
+      "dateFinished": "2020-12-26 14:00:47.314",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check how many missing values in each column",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:45:50.505",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608968717767_-1890747197",
+      "id": "paragraph_1608968717767_-1890747197",
+      "dateCreated": "2020-12-26 14:45:17.767",
+      "status": "READY"
+    },
+    {
+      "text": "print(\"[missing values]\\n\")\nfor (col \u003c- df.columns) {\n    var missing_count \u003d df.filter(df(col).isNull || df(col) \u003d\u003d\u003d \"\" || df(col).isNaN).count()\n    print(col)\n    print(\": \")\n    println(missing_count)\n    \n}",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:01:10.615",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[missing values]\nartist: 3324840\nauth: 0\nfirstName: 471000\ngender: 471000\nitemInSession: 0\nlastName: 471000\nlength: 3324840\nlevel: 0\nlocation: 471000\nmethod: 0\npage: 0\nregistration: 471000\nsessionId: 0\nsong: 3324840\nstatus: 0\nts: 0\nuserAgent: 471000\nuserId: 471000\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966046550_-1783972319",
+      "id": "paragraph_1608966046550_-1783972319",
+      "dateCreated": "2020-12-26 14:00:46.550",
+      "dateStarted": "2020-12-26 14:01:10.621",
+      "dateFinished": "2020-12-26 14:14:21.358",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Check userId and sessionId  ",
+      "text": "If the below Ids are null or empty, delete those rows:\n\nuserId\nsessionId",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:48:01.466",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608968781923_-1457678951",
+      "id": "paragraph_1608968781923_-1457678951",
+      "dateCreated": "2020-12-26 14:46:21.923",
+      "status": "READY"
+    },
+    {
+      "text": "val df_without_null \u003d df.na.drop(\"any\")\nval df_without_missing_id \u003d df.filter(df_without_null(\"userId\") \u003d!\u003d \"\")  //`userId` should not be empty string\n\nprintln(\"df: \"+ df.count())\nprintln(\"df_without_null: \"+ df_without_null.count())\nprintln(\"df_without_missing_id: \"+ df_without_missing_id.count())\nprintln( (df.count() - df_without_missing_id.count()) + \" rows have been removed\")\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:14:25.802",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "df: 16311150\ndf_without_null: 12986310\ndf_without_missing_id: 15840150\n471000 rows have been removed\n\u001b[1m\u001b[34mdf_without_null\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [artist: string, auth: string ... 16 more fields]\n\u001b[1m\u001b[34mdf_without_missing_id\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [artist: string, auth: string ... 16 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966070619_-767773209",
+      "id": "paragraph_1608966070619_-767773209",
+      "dateCreated": "2020-12-26 14:01:10.619",
+      "dateStarted": "2020-12-26 14:14:25.812",
+      "dateFinished": "2020-12-26 14:17:26.139",
+      "status": "FINISHED"
+    },
+    {
+      "title": "II. Exploratory Data Analysis",
+      "text": "Detect number columns and category columns.\n\nnum_cols: Number columns (Long or Double)\ncat_cols: Category columns (String)",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:11:18.093",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966520452_-197442156",
+      "id": "paragraph_1608966520452_-197442156",
+      "dateCreated": "2020-12-26 14:08:40.452",
+      "status": "READY"
+    },
+    {
+      "text": "var num_cols \u003d new Array[String](6)\nvar cat_cols \u003d new Array[String](12)\nvar cat_count \u003d 0\nvar num_count \u003d 0\nfor (s \u003c- df.schema){\n    var data_type \u003d (s.dataType).toString\n    //print(data_type)\n    if(data_type \u003d\u003d \"StringType\"){\n        cat_cols(cat_count) \u003d s.name\n        cat_count +\u003d 1 \n        \n    }\n    if(data_type \u003d\u003d \"LongType\" || data_type \u003d\u003d \"DoubleType\"){\n        num_cols(num_count) \u003d s.name\n        num_count +\u003d1\n    }\n}",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:17:31.966",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mnum_cols\u001b[0m: \u001b[1m\u001b[32mArray[String]\u001b[0m \u003d Array(itemInSession, length, registration, sessionId, status, ts)\n\u001b[1m\u001b[34mcat_cols\u001b[0m: \u001b[1m\u001b[32mArray[String]\u001b[0m \u003d Array(artist, auth, firstName, gender, lastName, level, location, method, page, song, userAgent, userId)\n\u001b[1m\u001b[34mcat_count\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 12\n\u001b[1m\u001b[34mnum_count\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 6\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966562417_1196895500",
+      "id": "paragraph_1608966562417_1196895500",
+      "dateCreated": "2020-12-26 14:09:22.417",
+      "dateStarted": "2020-12-26 14:17:31.977",
+      "dateFinished": "2020-12-26 14:17:33.372",
+      "status": "FINISHED"
+    },
+    {
+      "text": "num_cols",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:17:42.395",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres15\u001b[0m: \u001b[1m\u001b[32mArray[String]\u001b[0m \u003d Array(itemInSession, length, registration, sessionId, status, ts)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966575577_1886317853",
+      "id": "paragraph_1608966575577_1886317853",
+      "dateCreated": "2020-12-26 14:09:35.578",
+      "dateStarted": "2020-12-26 14:17:42.403",
+      "dateFinished": "2020-12-26 14:17:42.993",
+      "status": "FINISHED"
+    },
+    {
+      "text": "cat_cols",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:17:51.551",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres16\u001b[0m: \u001b[1m\u001b[32mArray[String]\u001b[0m \u003d Array(artist, auth, firstName, gender, lastName, level, location, method, page, song, userAgent, userId)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966588350_-426063594",
+      "id": "paragraph_1608966588350_-426063594",
+      "dateCreated": "2020-12-26 14:09:48.350",
+      "dateStarted": "2020-12-26 14:17:51.559",
+      "dateFinished": "2020-12-26 14:17:51.981",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Number columns",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:48:47.835",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608968896879_315139799",
+      "id": "paragraph_1608968896879_315139799",
+      "dateCreated": "2020-12-26 14:48:16.879",
+      "status": "READY"
+    },
+    {
+      "text": "for(s \u003c- num_cols){\n    df_without_missing_id.describe(s).show()\n}",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:17:57.542",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+------------------+\n|summary|     itemInSession|\n+-------+------------------+\n|  count|          15840150|\n|   mean|107.77899451709737|\n| stddev| 116.8646796521591|\n|    min|                 0|\n|    max|              1005|\n+-------+------------------+\n\n+-------+-----------------+\n|summary|           length|\n+-------+-----------------+\n|  count|         12986310|\n|   mean|248.6645927800807|\n| stddev|98.41255966675672|\n|    min|          0.78322|\n|    max|       3024.66567|\n+-------+-----------------+\n\n+-------+--------------------+\n|summary|        registration|\n+-------+--------------------+\n|  count|            15840150|\n|   mean|1.535523414863164E12|\n| stddev| 3.078722674743453E9|\n|    min|       1509854193000|\n|    max|       1543073874000|\n+-------+--------------------+\n\n+-------+------------------+\n|summary|         sessionId|\n+-------+------------------+\n|  count|          15840150|\n|   mean|2042.9801820058522|\n| stddev| 1433.996836265118|\n|    min|                 1|\n|    max|              4808|\n+-------+------------------+\n\n+-------+------------------+\n|summary|            status|\n+-------+------------------+\n|  count|          15840150|\n|   mean|209.09106163767387|\n| stddev|30.148750232525607|\n|    min|               200|\n|    max|               404|\n+-------+------------------+\n\n+-------+--------------------+\n|summary|                  ts|\n+-------+--------------------+\n|  count|            15840150|\n|   mean|2.490966927748477...|\n| stddev|8.655454395983787E11|\n|    min|       1038352011000|\n|    max|       3943622466000|\n+-------+--------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966593750_1273940711",
+      "id": "paragraph_1608966593750_1273940711",
+      "dateCreated": "2020-12-26 14:09:53.750",
+      "dateStarted": "2020-12-26 14:17:57.550",
+      "dateFinished": "2020-12-26 14:21:10.657",
+      "status": "FINISHED"
+    },
+    {
+      "title": "There are three HTTP status codes:",
+      "text": "- 307: Temporary Redirect\n- 404: Not Found\n- 200: OK",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:50:18.027",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608968937138_1662020471",
+      "id": "paragraph_1608968937138_1662020471",
+      "dateCreated": "2020-12-26 14:48:57.139",
+      "status": "READY"
+    },
+    {
+      "text": "df_without_missing_id.select(\"status\").dropDuplicates().show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:21:37.052",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+\n|status|\n+------+\n|   307|\n|   404|\n|   200|\n+------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966606665_1839052260",
+      "id": "paragraph_1608966606665_1839052260",
+      "dateCreated": "2020-12-26 14:10:06.666",
+      "dateStarted": "2020-12-26 14:21:37.067",
+      "dateFinished": "2020-12-26 14:22:15.103",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Category columns",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:50:53.978",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608969034508_1264935294",
+      "id": "paragraph_1608969034508_1264935294",
+      "dateCreated": "2020-12-26 14:50:34.508",
+      "status": "READY"
+    },
+    {
+      "text": "df_without_missing_id.select(\"auth\").dropDuplicates().show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:22:27.682",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+\n|     auth|\n+---------+\n|Cancelled|\n|Logged In|\n+---------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966628430_-804982486",
+      "id": "paragraph_1608966628430_-804982486",
+      "dateCreated": "2020-12-26 14:10:28.430",
+      "dateStarted": "2020-12-26 14:22:27.689",
+      "dateFinished": "2020-12-26 14:23:04.240",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df_without_missing_id.select(\"gender\").dropDuplicates().show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:23:10.519",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+\n|gender|\n+------+\n|     F|\n|     M|\n+------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966641308_-98991225",
+      "id": "paragraph_1608966641308_-98991225",
+      "dateCreated": "2020-12-26 14:10:41.308",
+      "dateStarted": "2020-12-26 14:23:10.532",
+      "dateFinished": "2020-12-26 14:23:45.595",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df_without_missing_id.select(\"level\").dropDuplicates().show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:24:26.976",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----+\n|level|\n+-----+\n| free|\n| paid|\n+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966652212_45065983",
+      "id": "paragraph_1608966652212_45065983",
+      "dateCreated": "2020-12-26 14:10:52.213",
+      "dateStarted": "2020-12-26 14:24:26.984",
+      "dateFinished": "2020-12-26 14:25:03.670",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df_without_missing_id.select(\"location\").dropDuplicates().show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:25:29.754",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|            location|\n+--------------------+\n|     Gainesville, FL|\n|Atlantic City-Ham...|\n|        Richmond, VA|\n|          Tucson, AZ|\n|       Oskaloosa, IA|\n|Deltona-Daytona B...|\n|San Diego-Carlsba...|\n|Cleveland-Elyria, OH|\n|         Medford, OR|\n|Kingsport-Bristol...|\n+--------------------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966661076_-1896936481",
+      "id": "paragraph_1608966661076_-1896936481",
+      "dateCreated": "2020-12-26 14:11:01.076",
+      "dateStarted": "2020-12-26 14:25:29.764",
+      "dateFinished": "2020-12-26 14:26:04.044",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df_without_missing_id.select(\"method\").dropDuplicates().show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:26:18.543",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+\n|method|\n+------+\n|   PUT|\n|   GET|\n+------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966689076_1846264074",
+      "id": "paragraph_1608966689076_1846264074",
+      "dateCreated": "2020-12-26 14:11:29.076",
+      "dateStarted": "2020-12-26 14:26:18.553",
+      "dateFinished": "2020-12-26 14:26:54.596",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df_without_missing_id.select(\"page\").dropDuplicates().show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:27:09.728",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|                page|\n+--------------------+\n|              Cancel|\n|    Submit Downgrade|\n|         Thumbs Down|\n|                Home|\n|           Downgrade|\n|         Roll Advert|\n|              Logout|\n|       Save Settings|\n|Cancellation Conf...|\n|               About|\n|            Settings|\n|     Add to Playlist|\n|          Add Friend|\n|            NextSong|\n|           Thumbs Up|\n|                Help|\n|             Upgrade|\n|               Error|\n|      Submit Upgrade|\n+--------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966698914_-42403583",
+      "id": "paragraph_1608966698914_-42403583",
+      "dateCreated": "2020-12-26 14:11:38.914",
+      "dateStarted": "2020-12-26 14:27:09.735",
+      "dateFinished": "2020-12-26 14:27:45.187",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df_without_missing_id.select(\"userAgent\").dropDuplicates().show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:27:59.836",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|           userAgent|\n+--------------------+\n|\"Mozilla/5.0 (Mac...|\n|\"Mozilla/5.0 (Win...|\n|Mozilla/5.0 (X11;...|\n|\"Mozilla/5.0 (Mac...|\n|\"Mozilla/5.0 (Mac...|\n|Mozilla/5.0 (Maci...|\n|Mozilla/5.0 (Wind...|\n|Mozilla/5.0 (Wind...|\n|Mozilla/5.0 (comp...|\n|\"Mozilla/5.0 (Win...|\n+--------------------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966710145_-1892872632",
+      "id": "paragraph_1608966710145_-1892872632",
+      "dateCreated": "2020-12-26 14:11:50.145",
+      "dateStarted": "2020-12-26 14:27:59.845",
+      "dateFinished": "2020-12-26 14:28:36.848",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df_without_missing_id.filter(\"page \u003d \u0027Cancellation Confirmation\u0027\").show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:28:41.902",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+---------+---------+------+-------------+--------+------+-----+--------------------+------+--------------------+-------------+---------+----+------+-------------+--------------------+------+\n|artist|     auth|firstName|gender|itemInSession|lastName|length|level|            location|method|                page| registration|sessionId|song|status|           ts|           userAgent|userId|\n+------+---------+---------+------+-------------+--------+------+-----+--------------------+------+--------------------+-------------+---------+----+------+-------------+--------------------+------+\n|  null|Cancelled|   Olivia|     F|           40|    Carr|  null| free|      Fort Wayne, IN|   GET|Cancellation Conf...|1536758439000|      490|null|   200|1038400616000|Mozilla/5.0 (Wind...|   208|\n|  null|Cancelled|  Lillian|     F|          234| Cameron|  null| paid|        Columbus, OH|   GET|Cancellation Conf...|1533472700000|      471|null|   200|1038482793000|Mozilla/5.0 (Wind...|   231|\n|  null|Cancelled|     Alex|     M|          109|   Myers|  null| paid|Grand Rapids-Wyom...|   GET|Cancellation Conf...|1529995579000|      682|null|   200|1038539871000|\"Mozilla/5.0 (Win...|   236|\n|  null|Cancelled|   Rafael|     M|           66|Crawford|  null| free|   Bowling Green, KY|   GET|Cancellation Conf...|1533887620000|      628|null|   200|1038592529000|\"Mozilla/5.0 (Mac...|   156|\n|  null|Cancelled|     Brad|     M|          227| Stewart|  null| paid|         Roanoke, VA|   GET|Cancellation Conf...|1535619094000|      395|null|   200|1038770077000|\"Mozilla/5.0 (Win...|   271|\n|  null|Cancelled|    Isaac|     M|          193|  Miller|  null| paid|Seattle-Tacoma-Be...|   GET|Cancellation Conf...|1538201832000|      862|null|   200|1038800531000|Mozilla/5.0 (Wind...|   200|\n|  null|Cancelled|     Ivan|     M|            9| Sanchez|  null| free|Bridgeport-Stamfo...|   GET|Cancellation Conf...|1533575236000|     1027|null|   200|1038890895000|Mozilla/5.0 (Wind...|   130|\n|  null|Cancelled|    Chloe|     M|           56|   Myers|  null| free|Tampa-St. Petersb...|   GET|Cancellation Conf...|1534370883000|      480|null|   200|1038959081000|\"Mozilla/5.0 (iPh...|   123|\n|  null|Cancelled|    Alexi|     F|            7|  Warren|  null| paid|Spokane-Spokane V...|   GET|Cancellation Conf...|1532482662000|     1010|null|   200|1038987586000|Mozilla/5.0 (Wind...|    54|\n|  null|Cancelled|   Payton|     F|           82|Campbell|  null| paid|Los Angeles-Long ...|   GET|Cancellation Conf...|1529027541000|     1066|null|   200|1039011456000|\"Mozilla/5.0 (Win...|    39|\n+------+---------+---------+------+-------------+--------+------+-----+--------------------+------+--------------------+-------------+---------+----+------+-------------+--------------------+------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966721281_-1667232686",
+      "id": "paragraph_1608966721281_-1667232686",
+      "dateCreated": "2020-12-26 14:12:01.281",
+      "dateStarted": "2020-12-26 14:28:41.914",
+      "dateFinished": "2020-12-26 14:28:43.926",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val df_churned \u003d df_without_missing_id.withColumn(\"churned\", when(col(\"page\") \u003d\u003d\u003d \"Cancellation Confirmation\", 1).otherwise(0))\ndf_churned.filter(\"churned \u003d 1\").show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:28:49.281",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+---------+---------+------+-------------+--------+------+-----+--------------------+------+--------------------+-------------+---------+----+------+-------------+--------------------+------+-------+\n|artist|     auth|firstName|gender|itemInSession|lastName|length|level|            location|method|                page| registration|sessionId|song|status|           ts|           userAgent|userId|churned|\n+------+---------+---------+------+-------------+--------+------+-----+--------------------+------+--------------------+-------------+---------+----+------+-------------+--------------------+------+-------+\n|  null|Cancelled|   Olivia|     F|           40|    Carr|  null| free|      Fort Wayne, IN|   GET|Cancellation Conf...|1536758439000|      490|null|   200|1038400616000|Mozilla/5.0 (Wind...|   208|      1|\n|  null|Cancelled|  Lillian|     F|          234| Cameron|  null| paid|        Columbus, OH|   GET|Cancellation Conf...|1533472700000|      471|null|   200|1038482793000|Mozilla/5.0 (Wind...|   231|      1|\n|  null|Cancelled|     Alex|     M|          109|   Myers|  null| paid|Grand Rapids-Wyom...|   GET|Cancellation Conf...|1529995579000|      682|null|   200|1038539871000|\"Mozilla/5.0 (Win...|   236|      1|\n|  null|Cancelled|   Rafael|     M|           66|Crawford|  null| free|   Bowling Green, KY|   GET|Cancellation Conf...|1533887620000|      628|null|   200|1038592529000|\"Mozilla/5.0 (Mac...|   156|      1|\n|  null|Cancelled|     Brad|     M|          227| Stewart|  null| paid|         Roanoke, VA|   GET|Cancellation Conf...|1535619094000|      395|null|   200|1038770077000|\"Mozilla/5.0 (Win...|   271|      1|\n|  null|Cancelled|    Isaac|     M|          193|  Miller|  null| paid|Seattle-Tacoma-Be...|   GET|Cancellation Conf...|1538201832000|      862|null|   200|1038800531000|Mozilla/5.0 (Wind...|   200|      1|\n|  null|Cancelled|     Ivan|     M|            9| Sanchez|  null| free|Bridgeport-Stamfo...|   GET|Cancellation Conf...|1533575236000|     1027|null|   200|1038890895000|Mozilla/5.0 (Wind...|   130|      1|\n|  null|Cancelled|    Chloe|     M|           56|   Myers|  null| free|Tampa-St. Petersb...|   GET|Cancellation Conf...|1534370883000|      480|null|   200|1038959081000|\"Mozilla/5.0 (iPh...|   123|      1|\n|  null|Cancelled|    Alexi|     F|            7|  Warren|  null| paid|Spokane-Spokane V...|   GET|Cancellation Conf...|1532482662000|     1010|null|   200|1038987586000|Mozilla/5.0 (Wind...|    54|      1|\n|  null|Cancelled|   Payton|     F|           82|Campbell|  null| paid|Los Angeles-Long ...|   GET|Cancellation Conf...|1529027541000|     1066|null|   200|1039011456000|\"Mozilla/5.0 (Win...|    39|      1|\n+------+---------+---------+------+-------------+--------+------+-----+--------------------+------+--------------------+-------------+---------+----+------+-------------+--------------------+------+-------+\nonly showing top 10 rows\n\n\u001b[1m\u001b[34mdf_churned\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [artist: string, auth: string ... 17 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966734959_1693562174",
+      "id": "paragraph_1608966734959_1693562174",
+      "dateCreated": "2020-12-26 14:12:14.959",
+      "dateStarted": "2020-12-26 14:28:49.287",
+      "dateFinished": "2020-12-26 14:28:51.241",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Define Churn",
+      "text": "// churn: Cancellation Confirmation\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 15:01:21.984",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608969075490_813125492",
+      "id": "paragraph_1608969075490_813125492",
+      "dateCreated": "2020-12-26 14:51:15.490",
+      "dateStarted": "2020-12-26 15:01:15.784",
+      "dateFinished": "2020-12-26 15:01:16.197",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val total_cancelConfirms \u003d df_churned.filter(\"churned \u003d 1\").count() \n\nval total_Users \u003d df_churned.groupBy(\"userId\").sum(\"churned\").count() \n\nprintln(\"churned: \" +100*(total_cancelConfirms.toDouble)/(total_Users:Float) + \" %\" )",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 14:36:29.134",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "churned: 19.888392857142858 %\n\u001b[1m\u001b[34mtotal_cancelConfirms\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 2970\n\u001b[1m\u001b[34mtotal_Users\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 448\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966769589_502424884",
+      "id": "paragraph_1608966769589_502424884",
+      "dateCreated": "2020-12-26 14:12:49.589",
+      "dateStarted": "2020-12-26 14:35:00.272",
+      "dateFinished": "2020-12-26 14:36:16.911",
+      "status": "FINISHED"
+    },
+    {
+      "text": "spark.stop()",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-26 15:07:51.448",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966790701_1167592094",
+      "id": "paragraph_1608966790701_1167592094",
+      "dateCreated": "2020-12-26 14:13:10.701",
+      "dateStarted": "2020-12-26 15:07:51.454",
+      "dateFinished": "2020-12-26 15:07:52.128",
+      "status": "FINISHED"
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1608966806728_370607588",
+      "id": "paragraph_1608966806728_370607588",
+      "dateCreated": "2020-12-26 14:13:26.728",
+      "status": "READY"
+    }
+  ],
+  "name": "final-project-IT4931",
+  "id": "2FV82FQEQ",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
