@@ -3,3 +3,6 @@ Install and run, load and analyze data from user logs use Pyspark and Scala
 ## Physical nodes
 
 ![3nodes](https://user-images.githubusercontent.com/57699454/118432341-8be83280-b702-11eb-9206-9ad6041abbb3.jpg)
+
+## Ref
+https://www.kaggle.com/code/yukinagae/sparkify-project-churn-prediction/notebook
